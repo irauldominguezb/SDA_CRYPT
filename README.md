@@ -1,4 +1,4 @@
-SDA_CRYPT
+#SDA_CRYPT
 
 Este proyecto ejemplifica las mejores prácticas en el cifrado de información tanto en el backend como en el frontend. Se centra en la gestión segura de datos en una aplicación de películas.
 
