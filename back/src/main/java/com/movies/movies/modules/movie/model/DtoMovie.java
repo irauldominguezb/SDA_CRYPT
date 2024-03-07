@@ -16,6 +16,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class DtoMovie {
 
+    // Se aplican validaciones en la mayoría de los campos para asegurar
+    // tamaños adecuados, formato de fecha correcto y evitar valores nulos.
+
     private Long id;
 
     @NotNull(message = "missing field")

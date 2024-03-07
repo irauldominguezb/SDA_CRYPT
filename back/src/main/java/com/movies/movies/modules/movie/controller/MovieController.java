@@ -31,9 +31,12 @@ public class MovieController {
     ResponseApi<?> getPage(Pageable pageable){
         try{
             Page<Movie> page = service.moviePage(pageable);
+            // Convertir la página de películas a formato JSON y cifrar la cadena resultante
             String crypt = cryptService.encrypt(objectMapper.writeValueAsString(page));
+            // Devolver una respuesta exitosa con la cadena cifrada
             return new ResponseApi<>(crypt, HttpStatus.OK);
         }catch (Exception e){
+            // En caso de error, imprimir el mensaje de la excepción en la consola
             System.out.println(e.getMessage());
             return new ResponseApi<>(null, HttpStatus.INTERNAL_SERVER_ERROR, true, "internal server error");
         }
@@ -92,22 +95,29 @@ public class MovieController {
     @PostMapping("/")
     ResponseApi<?> insertMovie(@RequestBody String data) {
         try {
+            // Desencripta la cadena de datos recibida
             String movieString = cryptService.decrypt(data);
 
+            // Convierte la cadena desencriptada a un objeto DtoMovie utilizando Json ObjectMapper
             DtoMovie movie = objectMapper.readValue(movieString, DtoMovie.class);
+            // Valida el objeto DtoMovie utilizando el sistema de validación de Bean Validation
             ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
             Validator validator = factory.getValidator();
             Set<ConstraintViolation<DtoMovie>> violations = validator.validate(movie);
 
+            // Si hay violaciones de las restricciones de validación, devulve una respuesta con errores de validación
             if (!violations.isEmpty()) {
                 Map<String, String> validationErrors = new HashMap<>();
                 violations.forEach(violation -> validationErrors.put(violation.getPropertyPath() + "", violation.getMessage()));
                 return new ResponseApi<>(null, HttpStatus.BAD_REQUEST, true, "bad request", validationErrors);
             }
+            // Si la validación es exitosa, inserta la película utilizando el servicio y devuelve una respuesta exitosa
             return new ResponseApi<>(service.insertMovie(movie), HttpStatus.OK);
         }catch (JsonProcessingException ex){
+            // Maneja la excepción en caso de que haya un problema al procesar el JSON recibido
             return new ResponseApi<>(null, HttpStatus.BAD_REQUEST, true, "malformed request");
         } catch (Exception ex) {
+            // Maneja la excepción en caso de un error general, por ejemplo, fallo en el servicio de cifrado
             return new ResponseApi<>(null, HttpStatus.BAD_REQUEST, true, "failed crypt service");
         }
     }

@@ -162,10 +162,13 @@ export default {
                     try {
                         const {id} = this.selected;
                         this.movie.gender = id;
+                        // Convertir el objeto 'movie' a formato JSON y encriptar el resultado
                         const objectToEncrypt = JSON.stringify(this.movie)
                         const chiperedObject = await encrypt(objectToEncrypt)
+                        // Desencriptar el objeto cifrado y mostrar el resultado en la consola
                         const unzipObject = await decrypt(chiperedObject)
                         console.log("=>",unzipObject)
+                         // Intentar guardar la película en el servicio 'movieServices' con la data cifrada
                         const {status} = await movieServices.saveMovie(chiperedObject)
                         if(status === 200){
                             this.$swal.fire({

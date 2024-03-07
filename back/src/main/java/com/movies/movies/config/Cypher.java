@@ -12,7 +12,9 @@ public class Cypher {
 
     @Bean
     public KeyPair keyPair() throws NoSuchAlgorithmException {
+        //Configuración del algoritmo de generación de claves RSA
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        //Se asigna el tamaño de bits con el que se esta cifrando decifrando
         keyPairGenerator.initialize(2048);
         return keyPairGenerator.generateKeyPair();
     }

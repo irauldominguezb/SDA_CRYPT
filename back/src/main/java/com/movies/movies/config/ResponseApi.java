@@ -12,18 +12,20 @@ import java.util.Map;
 @AllArgsConstructor
 @Data
 public class ResponseApi<T> {
-
+    //Respuesta personalizada
     private T data;
     private HttpStatus status;
     private boolean error;
     private String msg;
     private Map<String, String> errors;
 
+    //Respuesta basica
     public ResponseApi(T data, HttpStatus status) {
         this.data = data;
         this.status = status;
     }
 
+    //Respuesta completa
     public ResponseApi(T data, HttpStatus status, boolean error, String msg) {
         this.data = data;
         this.status = status;
