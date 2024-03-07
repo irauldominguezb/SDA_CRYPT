@@ -17,19 +17,13 @@ Este proyecto utiliza Yarn como gestor de dependencias. Para configurar el front
 
     Abre la terminal y navega al directorio del frontend:
 
-bash
-
 cd frontend/
 
     Instala las dependencias con:
 
-bash
-
 yarn install
 
     Ejecuta la aplicación con:
-
-bash
 
 yarn serve
 
@@ -37,10 +31,8 @@ yarn serve
 
     Abre la terminal y navega al directorio del backend:
 
-bash
-
 cd backend/
 
-    Realiza las configuraciones necesarias y ejecuta la aplicación según las instrucciones específicas del backend.
+    Abre el poyecto y actualiza las dependencias con Maven
 
 Este proyecto destaca la importancia de la seguridad en el manejo de datos, ofreciendo una implementación robusta y siguiendo las mejores prácticas recomendadas en el desarrollo web profesional y la seguridad de ellas.
