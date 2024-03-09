@@ -13,9 +13,13 @@ Antes de ejecutar la aplicación, asegúrate de tener instalados los siguientes 
 
 ## Librerías utilizadas:
 Front:
+
 -[sjcl](https://www.npmjs.com/package/sjcl):
-Back
-Cabe destacar que la dependencia de java es nativa y viene de javax, más info en el siguiente ling:
+
+Back:
+
+Cabe destacar que la dependencia de java es nativa y viene de javax, más info en el siguiente link:
+
 -[Java](https://docs.oracle.com/javase/8/docs/api/java/security/package-summary.html)
 
 
